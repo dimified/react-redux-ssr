@@ -1,0 +1,9 @@
+{
+  "name": "holly",
+  "version": "0.1.0",
+  "description": "holly",
+  "main": "index.js",
+  "repository": "bitbucket.org/dimified/holly.git",
+  "author": "Dimitri Reifschneider",
+  "license": ""
+}
