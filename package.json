@@ -5,5 +5,9 @@
   "main": "index.js",
   "repository": "bitbucket.org/dimified/holly.git",
   "author": "Dimitri Reifschneider",
-  "license": ""
+  "license": "",
+  "dependencies": {
+    "react": "15.5.4",
+    "react-dom": "15.5.4"
+  }
 }
