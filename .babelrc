@@ -9,6 +9,6 @@
   "plugins": [
 
     "react-hot-loader/babel"
-    // Enables React code to work with HMR.
+    // Enables React code to work with HMR
   ]
 }

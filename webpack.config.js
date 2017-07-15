@@ -3,78 +3,82 @@
 const webpack = require('webpack');
 const { resolve } = require('path');
 
+// Plugins
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
-    context: resolve(__dirname, 'src'),
-    // putting a context to it
+  context: resolve(__dirname, 'src'),
+  // Putting a context to it
 
-    entry: [
-        'react-hot-loader/patch',
-        // activate HMR for React
+  entry: [
+    './index.js'
+    // The entry point of our app
+  ],
 
-        'webpack-dev-server/client?http://localhost:8080',
-        // bundle the client for webpack-dev-server
-        // and connect to the provided endpoint
+  output: {
+    filename: 'bundle.js',
+    // The output bundle
 
-        'webpack/hot/only-dev-server',
-        // bundle the client for hot reloading
-        // only- means to only hot reload for successful updates
+    path: resolve(__dirname, 'dist'),
+    // Destination folder
 
-        './index.js'
-        // the entry point of our app
-    ],
+    publicPath: '/'
+    // Necessary for HMR to know where to load the hot update chunks
+  },
 
-    output: {
-        filename: 'bundle.js',
-        // the output bundle
+  devtool: 'inline-source-map',
 
-        path: resolve(__dirname, 'dist'),
-        // destination folder
+  devServer: {
+    host: 'localhost',
+    port: 3000,
 
-        publicPath: '/'
-        // necessary for HMR to know where to load the hot update chunks
-    },
+    hot: true,
+    // Enable HMR on the server
 
-    devtool: 'inline-source-map',
+    contentBase: resolve(__dirname, 'dist'),
+    // Match the output path
 
-    devServer: {
-        hot: true,
-        // enable HMR on the server
+    publicPath: '/'
+    // Match the output `publicPath`
+  },
 
-        contentBase: resolve(__dirname, 'dist'),
-        // match the output path
-
-        publicPath: '/'
-        // match the output `publicPath`
-    },
-
-    module: {
-        rules: [
-            {
-                test: /\.jsx?$/,
-                use: [ 'babel-loader', ],
-                exclude: /node_modules/
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader?modules',
-                        options: {
-                            modules: true,
-                            localIdentName: '[name]__[local]--[hash:base64:5]'
-                        }
-                    }
-                ],
-            },
-        ]
-    },
-
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        // enable HMR globally
-
-        new webpack.NamedModulesPlugin(),
-        // prints more readable module names in the browser console on HMR updates
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        use: ['babel-loader',],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader?modules',
+            options: {
+              modules: true,
+              localIdentName: '[name]__[local]--[hash:base64:5]'
+            }
+          }
+        ],
+      },
     ]
+  },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: resolve(__dirname, 'src/index.html'),
+    }),
+    // Generates own index.html file in the output folder
+
+    new CleanWebpackPlugin(['dist']),
+    // Takes care of cleaning output folder when building
+
+    new webpack.HotModuleReplacementPlugin(),
+    // Enable HMR globally
+
+    new webpack.NamedModulesPlugin(),
+    // Prints more readable module names in the browser console on HMR updates
+  ]
 };
