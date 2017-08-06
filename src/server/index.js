@@ -2,7 +2,7 @@ import express from 'express';
 import { join } from 'path';
 
 // Use bundled server side rendering
-const render = require('../dist/ssr.js');
+const render = require('./ssr.js');
 const app = express();
 const port = 9000;
 

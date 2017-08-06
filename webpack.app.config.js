@@ -56,7 +56,7 @@ const productionPlugins = [
 function environmentPlugins() {
   return production ? productionPlugins : productionPlugins.concat([
       new HtmlWebpackPlugin({
-        template: resolve(__dirname, src + '/index.html'),
+        template: resolve(__dirname, src + '/app/index.html'),
       }),
       // Generates own index.html file in the output folder
   ]);
@@ -68,7 +68,7 @@ module.exports = {
   // https://webpack.js.org/configuration/entry-context/#naming
 
   // The entry point of our src
-  entry: './index.js',
+  entry: './app/index.js',
   // https://webpack.js.org/configuration/entry-context/#entry
 
   // Putting a context to it
