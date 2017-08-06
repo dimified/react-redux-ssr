@@ -11,6 +11,7 @@
     "build": "NODE_ENV=production webpack --config ./webpack.app.config.js && webpack --config ./webpack.ssr.config.js && babel ./src/server/index.js -o dist/server.js",
     "server": "node dist/server.js",
     "start": "pm2 start dist/server.js --name 'holly'",
+    "restart": "pm2 restart holly",
     "stop": "pm2 stop holly"
   },
   "dependencies": {
