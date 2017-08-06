@@ -5,13 +5,13 @@ export default ({ body, title }) => {
     <html>
       <head>
         <title>${title}</title>
-        <link href="/assets/styles.css" rel="stylesheet" />
+        <link href="/styles.css" rel="stylesheet" />
       </head>
       
       <body>
         <div id="root">${body}</div>
         
-        <script src="/assets/client.js"></script>
+        <script src="/app.js"></script>
       </body>
     </html>
   `;

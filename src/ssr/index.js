@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import template from './template';
-import App from './components/App';
+import App from '../components/App';
 
 /**
  * Server side rendering

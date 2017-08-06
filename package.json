@@ -2,19 +2,20 @@
   "name": "holly",
   "version": "0.1.0",
   "description": "holly",
-  "main": "server/index.js",
+  "main": "public/index.js",
   "repository": "bitbucket.org/dimified/holly.git",
   "author": "Dimitri Reifschneider",
   "license": "",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack/webpack.config.client.js --open",
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "webpack --config ./webpack/webpack.config.client.js",
-    "build:server": "webpack --config ./webpack/webpack.config.ssr.js",
-    "serve": "npm run build && babel server -d dist && node dist/index.js"
+    "develop": "NODE_ENV=development webpack-dev-server --config ./webpack.app.config.js --open",
+    "build": "NODE_ENV=production webpack --config ./webpack.app.config.js && webpack --config ./webpack.ssr.config.js && babel ./server/index.js -o dist/server.js",
+    "server": "node dist/server.js",
+    "start": "pm2 start ecosystem.config.js",
+    "stop": "pm2 stop ecosystem.config.js"
   },
   "dependencies": {
     "express": "^4.15.3",
+    "pm2": "^2.5.0",
     "react": "15.5.4",
     "react-dom": "15.5.4"
   },
@@ -30,8 +31,11 @@
     "clean-webpack-plugin": "^0.1.16",
     "css-loader": "^0.28.3",
     "extract-text-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^2.29.0",
+    "isomorphic-style-loader": "^3.0.0",
     "react-hot-loader": "next",
-    "webpack": "^3.3.0",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.4.1",
     "webpack-dev-server": "^2.5.1",
     "webpack-node-externals": "^1.6.0"
   }
