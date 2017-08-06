@@ -10,8 +10,8 @@
     "develop": "NODE_ENV=development webpack-dev-server --config ./webpack.app.config.js --open",
     "build": "NODE_ENV=production webpack --config ./webpack.app.config.js && webpack --config ./webpack.ssr.config.js && babel ./src/server/index.js -o dist/server.js",
     "server": "node dist/server.js",
-    "start": "pm2 start ecosystem.config.js",
-    "stop": "pm2 stop ecosystem.config.js"
+    "start": "pm2 start dist/server.js --name 'holly'",
+    "stop": "pm2 stop holly"
   },
   "dependencies": {
     "express": "^4.15.3",
