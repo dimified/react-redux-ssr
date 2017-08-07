@@ -2,6 +2,9 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import template from './template';
 import App from '../app/components/App';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducers from '../app/reducers';
 
 /**
  * Server side rendering
@@ -10,9 +13,19 @@ import App from '../app/components/App';
  * @param {object} res Response object
  */
 export default function render(req, res) {
-  const app = renderToString(<App />);
+  const store = createStore(reducers);
+
+  const app = renderToString(
+    <Provider store={ store }>
+      <App />
+    </Provider>
+  );
+
+  const state = store.getState();
+
   res.send(template({
     body: app,
     title: 'holly',
+    state
   }));
 }
