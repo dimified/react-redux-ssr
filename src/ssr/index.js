@@ -1,4 +1,5 @@
 import React from 'react';
+import qs from 'qs';
 import { renderToString } from 'react-dom/server';
 import template from './template';
 import App from '../app/components/App';
@@ -13,7 +14,14 @@ import reducers from '../app/reducers';
  * @param {object} res Response object
  */
 export default function render(req, res) {
-  const store = createStore(reducers);
+  // Read the counter from the request, if provided
+  const params = qs.parse(req.query);
+  const status = params.status;
+
+  // Compile an initial state
+  let preloadedState = { app: { status } };
+
+  const store = createStore(reducers, preloadedState);
 
   const app = renderToString(
     <Provider store={ store }>

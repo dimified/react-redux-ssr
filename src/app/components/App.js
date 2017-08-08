@@ -4,14 +4,13 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.app.isLoggedIn
+    status: state.app.status
   };
 };
 
-const App = ({ isLoggedIn }) => (
+const App = ({ status }) => (
     <div className={ style.app }>
-        <h2>Hello Goofi, you are</h2>
-        { isLoggedIn ? 'loggedin' : 'loggedout' }
+        <h2>Hello Goofi, you are { status }</h2>
     </div>
 );
 

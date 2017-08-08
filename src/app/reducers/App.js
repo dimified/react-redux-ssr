@@ -3,7 +3,7 @@ import {
 } from '../actions/App';
 
 const initialState = {
-  isLoggedIn: true
+  status: 'not cool'
 };
 
 const app = (state = initialState, action) => {
@@ -11,7 +11,7 @@ const app = (state = initialState, action) => {
     case LOGINLOGOUT:
       return {
         ...state,
-        isLoggedIn: action.isLoggedIn
+        status: action.status
       };
     default:
       return state;
