@@ -1,18 +1,18 @@
 {
-  "name": "holly",
+  "name": "react-redux-ssr",
   "version": "0.1.0",
-  "description": "holly",
+  "description": "react-redux-ssr",
   "main": "src/app/index.js",
-  "repository": "bitbucket.org/dimified/holly.git",
+  "repository": "github.com/dimified/react-redux-ssr",
   "author": "Dimitri Reifschneider",
   "license": "",
   "scripts": {
     "develop": "NODE_ENV=development webpack-dev-server --config ./webpack.app.config.js --open",
     "build": "NODE_ENV=production webpack --config ./webpack.app.config.js && webpack --config ./webpack.ssr.config.js && babel ./src/server/index.js -o dist/server.js",
     "server": "node dist/server.js",
-    "start": "pm2 start dist/server.js --name 'holly'",
-    "restart": "pm2 restart holly",
-    "stop": "pm2 stop holly"
+    "start": "pm2 start dist/server.js --name 'react-redux-ssr'",
+    "restart": "pm2 restart react-redux-ssr",
+    "stop": "pm2 stop react-redux-ssr"
   },
   "dependencies": {
     "express": "^4.15.3",

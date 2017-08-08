@@ -33,7 +33,7 @@ export default function render(req, res) {
 
   res.send(template({
     body: app,
-    title: 'holly',
+    title: 'react-redux-ssr',
     state
   }));
 }
